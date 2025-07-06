@@ -1,0 +1,1634 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <meta http-equiv="Content-Style-Type" content="text/css">
+  <title></title>
+  <meta name="Generator" content="Cocoa HTML Writer">
+  <meta name="CocoaVersion" content="2575.6">
+  <style type="text/css">
+    p.p1 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica}
+    p.p2 {margin: 0.0px 0.0px 0.0px 0.0px; font: 12.0px Helvetica; min-height: 14.0px}
+  </style>
+</head>
+<body>
+<p class="p1">&lt;!DOCTYPE html&gt;</p>
+<p class="p1">&lt;html lang="en"&gt;</p>
+<p class="p1">&lt;head&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta charset="UTF-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;title&gt;Dispute Resolution System&lt;/title&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react@18/umd/react.development.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/@babel/standalone/babel.min.js"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://cdn.tailwindcss.com"&gt;&lt;/script&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"&gt;&lt;/script&gt;</p>
+<p class="p1">&lt;/head&gt;</p>
+<p class="p1">&lt;body&gt;</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;div id="root"&gt;&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;script type="text/babel"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const { useState, useEffect } = React;</p>
+<p class="p1"><span class="Apple-converted-space">        </span>const {<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>FileText,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>Clock,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>AlertCircle,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>CheckCircle,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>Users,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>Calendar,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>DollarSign,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>Search,<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">          </span>Filter,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Plus,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Eye,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Edit,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>MessageSquare,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>TrendingUp,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Download,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>Upload,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>FileUp,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>CheckSquare,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>X,</p>
+<p class="p1"><span class="Apple-converted-space">          </span>AlertTriangle</p>
+<p class="p1"><span class="Apple-converted-space">        </span>} = lucide;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>const DisputeResolutionApp = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [disputes, setDisputes] = useState([</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Sample disputes for demonstration</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">              </span>id: 'DR-2024-001',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: 'Contract Payment Dispute',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>company: 'TechCorp Solutions',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>reason: 'General',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>status: 'Active',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>priority: 'High',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>value: 125000,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dateCreated: '2024-01-15',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dueDate: '2024-02-15',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>parties: ['TechCorp Solutions', 'BuildRight Inc.'],</p>
+<p class="p1"><span class="Apple-converted-space">              </span>description: 'Dispute over delayed payment for software development services'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>// Your actual dispute data</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">              </span>id: 'DR-2024-002',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: 'Fraudulent - KONE ABDOULAYE',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>company: 'Client Dispute',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>disputeStatus: 'VISA RDR',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>disputeDate: '2025-06-28',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>subName: 'KONE ABDOULAYE',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>email: 'abdoulaye.kone9159@gmail.com',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>phoneNumber: '1 (347) 718-0796',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>subId: 1597365,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>amount: 31.57,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>purpose: 'Damage fee',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>reason: 'Fraudulent',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>erpStatus: 'Active',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>whoCharged: 'Alican',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>firstTxtEmail: false,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>managementReview: 'charge is for saddle replacement',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>secondLetter: false,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>submittedUntilWhen: '2025-06-28',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>wonLost: 'VISA RDR',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>anotherPersonsCard: false,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>priority: 'High',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>status: 'Pending',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>description: 'Fraudulent - Damage fee',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>parties: ['KONE ABDOULAYE', 'Company'],</p>
+<p class="p1"><span class="Apple-converted-space">              </span>value: 31.57,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dateCreated: '2025-06-28',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dueDate: '2025-06-28'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">              </span>id: 'DR-2024-003',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: 'Subscription canceled - NGOUDA LEYE',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>company: 'Client Dispute',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>disputeStatus: 'NEW',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>disputeDate: '2025-06-23',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>subName: 'NGOUDA LEYE',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>email: 'senleye28@gmail.com',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>phoneNumber: '1 (929) 498-3586',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>subId: 1470270,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>amount: 216.66,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>purpose: 'Loss/Theft',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>reason: 'Subscription Cancelled',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>erpStatus: 'Cancelled',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>whoCharged: 'Alican',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>firstTxtEmail: true,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>managementReview: 'The customer began their subscription on March 10, 2025, and reported the bike as stolen on May 7, 2025. The bike was confirmed as stolen and could not be recovered. The customer initially agreed to cover the associated charges but later filed a dispute.',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>secondLetter: false,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>anotherPersonsCard: false,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>priority: 'High',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>status: 'Active',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>description: 'Subscription canceled - Loss/Theft',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>parties: ['NGOUDA LEYE', 'Company'],</p>
+<p class="p1"><span class="Apple-converted-space">              </span>value: 216.66,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dateCreated: '2025-06-23',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dueDate: '2025-07-10'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">              </span>id: 'DR-2024-004',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: 'Subscription canceled - NGOUDA LEYE',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>company: 'Client Dispute',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>disputeStatus: 'NEW',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>disputeDate: '2025-06-23',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>subName: 'NGOUDA LEYE',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>email: 'senleye28@gmail.com',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>phoneNumber: '1 (929) 498-3586',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>subId: 1470270,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>amount: 381.06,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>purpose: 'Loss/Theft',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>reason: 'Subscription Cancelled',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>erpStatus: 'Cancelled',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>whoCharged: 'Alican',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>firstTxtEmail: true,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>managementReview: 'The customer began their subscription on March 10, 2025, and reported the bike as stolen on May 7, 2025. The bike was confirmed as stolen and could not be recovered. The customer initially agreed to cover the associated charges but later filed a dispute.',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>secondLetter: false,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>anotherPersonsCard: false,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>priority: 'High',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>status: 'Active',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>description: 'Subscription canceled - Loss/Theft',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>parties: ['NGOUDA LEYE', 'Company'],</p>
+<p class="p1"><span class="Apple-converted-space">              </span>value: 381.06,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dateCreated: '2025-06-23',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dueDate: '2025-07-10'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>},</p>
+<p class="p1"><span class="Apple-converted-space">            </span>{</p>
+<p class="p1"><span class="Apple-converted-space">              </span>id: 'DR-2024-005',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: 'Subscription canceled - NGOUDA LEYE',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>company: 'Client Dispute',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>disputeStatus: 'NEW',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>disputeDate: '2025-06-23',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>subName: 'NGOUDA LEYE',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>email: 'senleye28@gmail.com',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>phoneNumber: '1 (929) 498-3586',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>subId: 1470270,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>amount: 55.53,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>purpose: 'Loss/Theft',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>reason: 'Subscription Cancelled',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>erpStatus: 'Cancelled',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>whoCharged: 'Alican',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>firstTxtEmail: true,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>managementReview: 'The customer began their subscription on March 10, 2025, and reported the bike as stolen on May 7, 2025. The bike was confirmed as stolen and could not be recovered. The customer initially agreed to cover the associated charges but later filed a dispute.',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>secondLetter: false,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>anotherPersonsCard: false,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>priority: 'High',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>status: 'Active',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>description: 'Subscription canceled - Loss/Theft',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>parties: ['NGOUDA LEYE', 'Company'],</p>
+<p class="p1"><span class="Apple-converted-space">              </span>value: 55.53,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dateCreated: '2025-06-23',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dueDate: '2025-07-10'</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [selectedDispute, setSelectedDispute] = useState(null);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [activeTab, setActiveTab] = useState('dashboard');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [searchTerm, setSearchTerm] = useState('');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [statusFilter, setStatusFilter] = useState('All');</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [showNewDisputeForm, setShowNewDisputeForm] = useState(false);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [showImportModal, setShowImportModal] = useState(false);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [importFile, setImportFile] = useState(null);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [importData, setImportData] = useState([]);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [importErrors, setImportErrors] = useState([]);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [importStep, setImportStep] = useState(1);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [fieldMapping, setFieldMapping] = useState({});</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [importPreview, setImportPreview] = useState([]);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const [newDispute, setNewDispute] = useState({</p>
+<p class="p1"><span class="Apple-converted-space">            </span>title: '',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>company: '',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>reason: 'General',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>priority: 'Medium',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>value: '',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>description: '',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>parties: ''</p>
+<p class="p1"><span class="Apple-converted-space">          </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const filteredDisputes = disputes.filter(dispute =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const matchesSearch = dispute.title.toLowerCase().includes(searchTerm.toLowerCase()) ||</p>
+<p class="p1"><span class="Apple-converted-space">                                 </span>(dispute.subName &amp;&amp; dispute.subName.toLowerCase().includes(searchTerm.toLowerCase())) ||</p>
+<p class="p1"><span class="Apple-converted-space">                                 </span>dispute.id.toLowerCase().includes(searchTerm.toLowerCase());</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const matchesStatus = statusFilter === 'All' || dispute.status === statusFilter;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>return matchesSearch &amp;&amp; matchesStatus;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handleBulkImportFromExcel = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const additionalDisputes = [</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>id: 'DR-2024-006',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: 'Fraudulent - JOHN DOE',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>company: 'Client Dispute',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>disputeStatus: 'UNDER REVIEW',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>disputeDate: '2025-06-20',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>subName: 'JOHN DOE',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>email: 'john.doe@email.com',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>phoneNumber: '1 (555) 123-4567',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>subId: 1234567,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>amount: 89.99,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>purpose: 'Monthly Fee',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>reason: 'Fraudulent',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>erpStatus: 'Active',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>whoCharged: 'System',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>firstTxtEmail: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>managementReview: 'Customer claims they did not authorize this transaction',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>secondLetter: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>submittedUntilWhen: '2025-07-20',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>wonLost: '',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>anotherPersonsCard: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>priority: 'Medium',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>status: 'Pending',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: 'Fraudulent - Monthly Fee',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>parties: ['JOHN DOE', 'Company'],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>value: 89.99,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dateCreated: '2025-06-20',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dueDate: '2025-07-20'</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>id: 'DR-2024-007',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: 'Unauthorized charge - JANE SMITH',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>company: 'Client Dispute',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>disputeStatus: 'WON',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>disputeDate: '2025-05-15',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>subName: 'JANE SMITH',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>email: 'jane.smith@email.com',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>phoneNumber: '1 (555) 987-6543',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>subId: 7654321,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>amount: 156.78,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>purpose: 'Damage fee',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>reason: 'Unauthorized',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>erpStatus: 'Resolved',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>whoCharged: 'Support Team',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>firstTxtEmail: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>managementReview: 'Customer provided evidence of bike return in good condition. Charge reversed.',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>secondLetter: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>submittedUntilWhen: '2025-06-15',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>wonLost: 'WON',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>anotherPersonsCard: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>priority: 'Low',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>status: 'Resolved',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: 'Unauthorized charge - Damage fee',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>parties: ['JANE SMITH', 'Company'],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>value: 156.78,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dateCreated: '2025-05-15',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dueDate: '2025-06-15'</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>id: 'DR-2024-008',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: 'Service not provided - MIKE WILSON',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>company: 'Client Dispute',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>disputeStatus: 'LOST',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>disputeDate: '2025-04-10',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>subName: 'MIKE WILSON',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>email: 'mike.wilson@email.com',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>phoneNumber: '1 (555) 456-7890',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>subId: 4567890,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>amount: 299.99,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>purpose: 'Subscription',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>reason: 'Product not received',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>erpStatus: 'Closed',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>whoCharged: 'Billing Team',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>firstTxtEmail: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>managementReview: 'Customer used service for full period. Valid charge confirmed through usage logs.',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>secondLetter: true,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>submittedUntilWhen: '2025-05-10',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>wonLost: 'LOST',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>anotherPersonsCard: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>priority: 'Medium',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>status: 'Resolved',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: 'Service not provided - Subscription',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>parties: ['MIKE WILSON', 'Company'],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>value: 299.99,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dateCreated: '2025-04-10',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dueDate: '2025-05-10'</p>
+<p class="p1"><span class="Apple-converted-space">              </span>},</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{</p>
+<p class="p1"><span class="Apple-converted-space">                </span>id: 'DR-2024-009',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>title: 'Billing error - SARAH JOHNSON',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>company: 'Client Dispute',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>disputeStatus: 'ACCEPTED',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>disputeDate: '2025-06-01',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>subName: 'SARAH JOHNSON',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>email: 'sarah.johnson@email.com',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>phoneNumber: '1 (555) 321-0987',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>subId: 3210987,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>amount: 45.00,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>purpose: 'Late fee',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>reason: 'Credit not processed',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>erpStatus: 'Processing',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>whoCharged: 'Auto-billing',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>firstTxtEmail: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>managementReview: 'System error caused duplicate late fee. Refund approved.',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>secondLetter: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>submittedUntilWhen: '2025-07-01',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>wonLost: 'ACCEPTED',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>anotherPersonsCard: false,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>priority: 'Low',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>status: 'Resolved',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>description: 'Billing error - Late fee',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>parties: ['SARAH JOHNSON', 'Company'],</p>
+<p class="p1"><span class="Apple-converted-space">                </span>value: 45.00,</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dateCreated: '2025-06-01',</p>
+<p class="p1"><span class="Apple-converted-space">                </span>dueDate: '2025-07-01'</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>setDisputes(prev =&gt; [...prev, ...additionalDisputes]);</p>
+<p class="p2"><span class="Apple-converted-space">            </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>setTimeout(() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>alert(`Successfully imported ${additionalDisputes.length} additional disputes! Total disputes: ${disputes.length + additionalDisputes.length}`);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}, 100);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handleCreateDispute = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!newDispute.title || !newDispute.company) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>const dispute = {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>...newDispute,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>id: `DR-2024-${String(disputes.length + 1).padStart(3, '0')}`,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>status: 'Active',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dateCreated: new Date().toISOString().split('T')[0],</p>
+<p class="p1"><span class="Apple-converted-space">              </span>dueDate: new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0],</p>
+<p class="p1"><span class="Apple-converted-space">              </span>parties: newDispute.parties.split(',').map(p =&gt; p.trim()),</p>
+<p class="p1"><span class="Apple-converted-space">              </span>value: parseInt(newDispute.value) || 0</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>setDisputes([...disputes, dispute]);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setNewDispute({</p>
+<p class="p1"><span class="Apple-converted-space">              </span>title: '',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>company: '',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>reason: 'General',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>priority: 'Medium',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>value: '',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>description: '',</p>
+<p class="p1"><span class="Apple-converted-space">              </span>parties: ''</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setShowNewDisputeForm(false);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handleFileUpload = (event) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const file = event.target.files[0];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!file) return;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>setImportFile(file);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const reader = new FileReader();</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>reader.onload = (e) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>const text = e.target.result;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>let parsedData = [];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>try {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (file.name.endsWith('.csv')) {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>const lines = text.split('\n');</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>const headers = lines[0].split(',').map(h =&gt; h.trim().replace(/"/g, ''));</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>for (let i = 1; i &lt; lines.length; i++) {</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>if (lines[i].trim()) {</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>const values = lines[i].split(',').map(v =&gt; v.trim().replace(/"/g, ''));</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>const row = {};</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>headers.forEach((header, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>row[header] = values[index] || '';</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>});</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>parsedData.push(row);</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>} else if (file.name.endsWith('.json')) {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>parsedData = JSON.parse(text);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>setImportData(parsedData);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setImportStep(2);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>} catch (error) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>setImportErrors(['Failed to parse file. Please check the format.']);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>reader.readAsText(file);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const handleFieldMapping = (csvField, appField) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setFieldMapping(prev =&gt; ({</p>
+<p class="p1"><span class="Apple-converted-space">              </span>...prev,</p>
+<p class="p1"><span class="Apple-converted-space">              </span>[csvField]: appField</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}));</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const validateImportData = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const errors = [];</p>
+<p class="p1"><span class="Apple-converted-space">            </span>const preview = [];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>importData.forEach((row, index) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>const mappedRow = {};</p>
+<p class="p1"><span class="Apple-converted-space">              </span>let hasErrors = false;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>Object.keys(fieldMapping).forEach(csvField =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>const appField = fieldMapping[csvField];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>if (appField &amp;&amp; appField !== 'ignore') {</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>mappedRow[appField] = row[csvField];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>if (!mappedRow.title || mappedRow.title.trim() === '') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errors.push(`Row ${index + 1}: Title is required`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>hasErrors = true;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>if (!mappedRow.company || mappedRow.company.trim() === '') {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errors.push(`Row ${index + 1}: Customer Name is required`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>hasErrors = true;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>if (mappedRow.value &amp;&amp; isNaN(mappedRow.value)) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>errors.push(`Row ${index + 1}: Value must be a number`);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>hasErrors = true;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>if (!hasErrors) {</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mappedRow.id = `DR-2024-${String(disputes.length + preview.length + 1).padStart(3, '0')}`;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mappedRow.status = mappedRow.status || mappedRow.disputeStatus || 'Active';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mappedRow.priority = mappedRow.priority || 'Medium';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mappedRow.reason = mappedRow.reason || 'General';</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mappedRow.value = parseInt(mappedRow.value || mappedRow.amount) || 0;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mappedRow.dateCreated = mappedRow.dateCreated || mappedRow.disputeDate || new Date().toISOString().split('T')[0];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mappedRow.dueDate = mappedRow.dueDate || mappedRow.respondBy || new Date(Date.now() + 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mappedRow.parties = mappedRow.parties ? mappedRow.parties.split(',').map(p =&gt; p.trim()) : [mappedRow.company, mappedRow.subName].filter(Boolean);</p>
+<p class="p1"><span class="Apple-converted-space">                </span>mappedRow.description = mappedRow.description || mappedRow.reason || mappedRow.mainReason || '';</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>preview.push(mappedRow);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>});</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>setImportErrors(errors);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setImportPreview(preview);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setImportStep(3);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const executeImport = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (importErrors.length === 0) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>setDisputes(prev =&gt; [...prev, ...importPreview]);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>setShowImportModal(false);</p>
+<p class="p1"><span class="Apple-converted-space">              </span>resetImportState();</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const resetImportState = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setImportFile(null);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setImportData([]);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setImportErrors([]);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setImportStep(1);</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setFieldMapping({});</p>
+<p class="p1"><span class="Apple-converted-space">            </span>setImportPreview([]);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const requiredFields = ['title', 'company'];</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const optionalFields = [</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'reason', 'status', 'priority', 'value', 'description', 'parties', 'dateCreated', 'dueDate',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'disputeStatus', 'disputeDate', 'respondBy', 'respondByInternal', 'folderReady', 'bank',<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">            </span>'subName', 'email', 'invoiceForCA', 'dateOfTransaction', 'amount', 'purpose',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'erpStatus', 'whoCharged', 'phoneNumber', 'firstTxtEmail', 'call', 'communicationLogs',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'claimedReason', 'mainReason', 'managementReview', 'secondLetter', 'followUpNext',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'nextCheckDate', 'repoRecoveryNotes', 'submittedUntilWhen', 'wonLost', 'wonLostWhen',</p>
+<p class="p1"><span class="Apple-converted-space">            </span>'reasonWhyLost', 'anotherPersonsCard', 'caTransferNotes', 'isDebtDoubled'</p>
+<p class="p1"><span class="Apple-converted-space">          </span>];</p>
+<p class="p1"><span class="Apple-converted-space">          </span>const allFields = [...requiredFields, ...optionalFields, 'ignore'];</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const getStatusColor = (status) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>switch(status) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>case 'Active': return 'bg-yellow-100 text-yellow-800';</p>
+<p class="p1"><span class="Apple-converted-space">              </span>case 'Pending': return 'bg-blue-100 text-blue-800';</p>
+<p class="p1"><span class="Apple-converted-space">              </span>case 'Resolved': return 'bg-green-100 text-green-800';</p>
+<p class="p1"><span class="Apple-converted-space">              </span>default: return 'bg-gray-100 text-gray-800';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const getPriorityColor = (priority) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>switch(priority) {</p>
+<p class="p1"><span class="Apple-converted-space">              </span>case 'High': return 'text-red-600';</p>
+<p class="p1"><span class="Apple-converted-space">              </span>case 'Medium': return 'text-yellow-600';</p>
+<p class="p1"><span class="Apple-converted-space">              </span>case 'Low': return 'text-green-600';</p>
+<p class="p1"><span class="Apple-converted-space">              </span>default: return 'text-gray-600';</p>
+<p class="p1"><span class="Apple-converted-space">            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const DashboardStats = () =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white p-6 rounded-lg shadow-sm border"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-sm text-gray-600"&gt;Total Disputes&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-2xl font-semibold text-gray-900"&gt;{disputes.length}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;FileText className="w-8 h-8 text-blue-500" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white p-6 rounded-lg shadow-sm border"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-sm text-gray-600"&gt;Active Cases&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-2xl font-semibold text-gray-900"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{disputes.filter(d =&gt; d.status === 'Active').length}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;Clock className="w-8 h-8 text-yellow-500" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white p-6 rounded-lg shadow-sm border"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-sm text-gray-600"&gt;Resolved&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-2xl font-semibold text-gray-900"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{disputes.filter(d =&gt; d.status === 'Resolved').length}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;CheckCircle className="w-8 h-8 text-green-500" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white p-6 rounded-lg shadow-sm border"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex items-center justify-between"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-sm text-gray-600"&gt;Total Value&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-2xl font-semibold text-gray-900"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>${disputes.reduce((sum, d) =&gt; sum + d.value, 0).toLocaleString()}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;DollarSign className="w-8 h-8 text-purple-500" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const DisputesList = () =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="bg-white rounded-lg shadow-sm border"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="p-6 border-b"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;h2 className="text-lg font-semibold text-gray-900"&gt;Disputes Management&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="flex gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="relative"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-4 h-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>type="text"</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>placeholder="Search disputes..."</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>className="pl-10 pr-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>value={searchTerm}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>onChange={(e) =&gt; setSearchTerm(e.target.value)}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;select</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>value={statusFilter}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onChange={(e) =&gt; setStatusFilter(e.target.value)}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="All"&gt;All Status&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Active"&gt;Active&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Pending"&gt;Pending&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Resolved"&gt;Resolved&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={() =&gt; setShowImportModal(true)}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700 flex items-center gap-2"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;Upload className="w-4 h-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>Import Disputes</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={handleBulkImportFromExcel}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700 flex items-center gap-2"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;FileUp className="w-4 h-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>Import All Excel Data</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={() =&gt; setShowNewDisputeForm(true)}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;Plus className="w-4 h-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>New Dispute</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="overflow-x-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;table className="w-full"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;thead className="bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Customer Name</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Reason</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Status</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Priority</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Value</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Deadline</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Actions</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;tbody className="bg-white divide-y divide-gray-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{filteredDisputes.map((dispute) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;tr key={dispute.id} className="hover:bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td className="px-6 py-4 whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm font-medium text-gray-900"&gt;{dispute.subName || dispute.company}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{dispute.reason}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td className="px-6 py-4 whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(dispute.status)}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{dispute.status}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td className="px-6 py-4 whitespace-nowrap"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;span className={`text-sm font-medium ${getPriorityColor(dispute.priority)}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{dispute.priority}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>${dispute.value.toLocaleString()}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td className="px-6 py-4 whitespace-nowrap text-sm text-gray-900"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{dispute.dueDate}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;td className="px-6 py-4 whitespace-nowrap text-sm text-gray-500"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="flex gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>onClick={() =&gt; setSelectedDispute(dispute)}</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>className="text-blue-600 hover:text-blue-800"</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;Eye className="w-4 h-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button className="text-gray-600 hover:text-gray-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;Edit className="w-4 h-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;button className="text-green-600 hover:text-green-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;MessageSquare className="w-4 h-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const NewDisputeForm = () =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white rounded-lg p-6 w-full max-w-md max-h-[90vh] overflow-y-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;h3 className="text-lg font-semibold mb-4"&gt;Create New Dispute&lt;/h3&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label className="block text-sm font-medium text-gray-700 mb-1"&gt;Title&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type="text"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>value={newDispute.title}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onChange={(e) =&gt; setNewDispute({...newDispute, title: e.target.value})}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label className="block text-sm font-medium text-gray-700 mb-1"&gt;Customer Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type="text"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>value={newDispute.company}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onChange={(e) =&gt; setNewDispute({...newDispute, company: e.target.value})}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label className="block text-sm font-medium text-gray-700 mb-1"&gt;Reason&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;select</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>value={newDispute.reason}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onChange={(e) =&gt; setNewDispute({...newDispute, reason: e.target.value})}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="General"&gt;General&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Fraudulent"&gt;Fraudulent&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Subscription Cancelled"&gt;Subscription Cancelled&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Product not received"&gt;Product not received&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Product unacceptable"&gt;Product unacceptable&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Credit not processed"&gt;Credit not processed&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Unauthorized"&gt;Unauthorized&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label className="block text-sm font-medium text-gray-700 mb-1"&gt;Priority&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;select</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>value={newDispute.priority}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onChange={(e) =&gt; setNewDispute({...newDispute, priority: e.target.value})}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="High"&gt;High&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Medium"&gt;Medium&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;option value="Low"&gt;Low&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label className="block text-sm font-medium text-gray-700 mb-1"&gt;Value ($)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type="number"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>value={newDispute.value}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onChange={(e) =&gt; setNewDispute({...newDispute, value: e.target.value})}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label className="block text-sm font-medium text-gray-700 mb-1"&gt;Parties (comma-separated)&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>type="text"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>value={newDispute.parties}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onChange={(e) =&gt; setNewDispute({...newDispute, parties: e.target.value})}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label className="block text-sm font-medium text-gray-700 mb-1"&gt;Description&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;textarea</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>rows="3"</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>value={newDispute.description}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onChange={(e) =&gt; setNewDispute({...newDispute, description: e.target.value})}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="flex gap-3 mt-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>onClick={handleCreateDispute}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>className="flex-1 bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Create Dispute</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>onClick={() =&gt; setShowNewDisputeForm(false)}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>className="flex-1 bg-gray-300 text-gray-700 py-2 rounded-lg hover:bg-gray-400"</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>Cancel</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const ImportModal = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!showImportModal) return null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="flex justify-between items-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 className="text-lg font-semibold"&gt;Import Client Disputes&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={() =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>setShowImportModal(false);</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>resetImportState();</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>}}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="text-gray-500 hover:text-gray-700"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;X className="w-5 h-5" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="flex items-center mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{[1, 2, 3, 4].map((step) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div key={step} className="flex items-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className={`w-8 h-8 rounded-full flex items-center justify-center ${</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>step &lt;= importStep ? 'bg-blue-600 text-white' : 'bg-gray-200 text-gray-600'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{step &lt; importStep ? &lt;CheckSquare className="w-4 h-4" /&gt; : step}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{step &lt; 4 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className={`w-12 h-1 ${</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>step &lt; importStep ? 'bg-blue-600' : 'bg-gray-200'</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>}`} /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{importStep === 1 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="border-2 border-dashed border-gray-300 rounded-lg p-8 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;FileUp className="w-16 h-16 text-gray-400 mx-auto mb-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 className="text-lg font-medium mb-2"&gt;Upload Client Dispute File&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p className="text-gray-600 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>Support for CSV, Excel (.xlsx), and JSON files</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;input</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>type="file"</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>accept=".csv,.xlsx,.json"</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>onChange={handleFileUpload}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>className="hidden"</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>id="file-upload"</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>htmlFor="file-upload"</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>className="bg-blue-600 text-white px-6 py-2 rounded-lg hover:bg-blue-700 cursor-pointer inline-block"</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>Choose File</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                      </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="text-left"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h5 className="font-medium mb-2"&gt;Expected File Format:&lt;/h5&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-gray-50 p-4 rounded-lg text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;p&gt;&lt;strong&gt;Required columns:&lt;/strong&gt; title, customer name&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;p&gt;&lt;strong&gt;Your dispute-specific columns:&lt;/strong&gt;&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="grid grid-cols-2 gap-2 mt-2 text-xs"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Status (dispute status)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Dispute Date&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Respond by&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Bank&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• SubName&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Email&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Amount&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Date of transaction&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Reason&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• ERP status&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Phone Number&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Communication logs&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Main Reason (from customer)&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Management review / Notes&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Follow-Up / Next Step Needed&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Next check date&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Won/Lost&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Reason why lost&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• CA transfer notes&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• Is debt doubled in sheet&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p&gt;• And many more...&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;p className="mt-3 text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;strong&gt;Example:&lt;/strong&gt; Your existing spreadsheet columns will be mapped to the appropriate dispute fields during import.</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{importStep === 2 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;h4 className="text-lg font-medium mb-4"&gt;Map Your Data Fields&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="text-gray-600 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Match your file columns to our dispute fields. Required fields are marked with *.</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/p&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                      </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="space-y-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{Object.keys(importData[0] || {}).map((csvField) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div key={csvField} className="flex items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="w-1/3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;span className="text-sm font-medium"&gt;{csvField}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="w-2/3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;select</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>className="w-full p-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500"</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>value={fieldMapping[csvField] || ''}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>onChange={(e) =&gt; handleFieldMapping(csvField, e.target.value)}</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;option value=""&gt;Select field...&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>{allFields.map((field) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;option key={field} value={field}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>{field === 'ignore' ? 'Ignore this field' :<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>requiredFields.includes(field) ? `${field === 'company' ? 'Customer Name' : field} *` :<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'company' ? 'Customer Name' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'disputeStatus' ? 'Dispute Status' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'disputeDate' ? 'Dispute Date' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'respondBy' ? 'Respond By' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'respondByInternal' ? 'Respond By Internal' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'folderReady' ? 'Folder Ready?' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'subName' ? 'Sub Name' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'invoiceForCA' ? 'Invoice for CA' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'dateOfTransaction' ? 'Date of Transaction' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'erpStatus' ? 'ERP Status' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'whoCharged' ? 'Who Charged/Agreed' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'phoneNumber' ? 'Phone Number' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'firstTxtEmail' ? '1st Txt &amp; Email' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'communicationLogs' ? 'Communication Logs' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'claimedReason' ? 'Claimed Reason (for bank)' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'mainReason' ? 'Main Reason (from customer)' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'managementReview' ? 'Management Review/Notes' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'secondLetter' ? '2nd Letter' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'followUpNext' ? 'Follow-Up/Next Step Needed' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'nextCheckDate' ? 'Next Check Date' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'repoRecoveryNotes' ? 'Repo/Recovery Notes' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'submittedUntilWhen' ? 'Submitted/Under Review Until When' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'wonLost' ? 'Won/Lost' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'wonLostWhen' ? 'Won/Lost When' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'reasonWhyLost' ? 'Reason Why Lost' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'anotherPersonsCard' ? "Another Person's Card" :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'caTransferNotes' ? 'CA Transfer Notes' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field === 'isDebtDoubled' ? 'Is Debt Doubled in Sheet' :</p>
+<p class="p1"><span class="Apple-converted-space">                                     </span>field}</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;/option&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;/select&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="flex gap-3 mt-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>onClick={() =&gt; setImportStep(1)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400"</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>Back</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>onClick={validateImportData}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>className="px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700"</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>disabled={!requiredFields.every(field =&gt;<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>Object.values(fieldMapping).includes(field)</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>Validate Data</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{importStep === 3 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;h4 className="text-lg font-medium mb-4"&gt;Data Validation Results&lt;/h4&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                      </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{importErrors.length &gt; 0 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-red-50 border border-red-200 rounded-lg p-4 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="flex items-center gap-2 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;AlertTriangle className="w-5 h-5 text-red-600" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span className="font-medium text-red-800"&gt;Validation Errors&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;ul className="text-sm text-red-700 space-y-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{importErrors.map((error, index) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;li key={index}&gt;• {error}&lt;/li&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/ul&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{importPreview.length &gt; 0 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-green-50 border border-green-200 rounded-lg p-4 mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="flex items-center gap-2 mb-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;CheckCircle className="w-5 h-5 text-green-600" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;span className="font-medium text-green-800"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>{importPreview.length} disputes ready to import</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{importPreview.length &gt; 0 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="max-h-60 overflow-y-auto border rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;table className="w-full text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;thead className="bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th className="px-3 py-2 text-left"&gt;Title&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th className="px-3 py-2 text-left"&gt;Customer&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th className="px-3 py-2 text-left"&gt;Reason&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th className="px-3 py-2 text-left"&gt;Priority&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;th className="px-3 py-2 text-left"&gt;Value&lt;/th&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/thead&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>{importPreview.slice(0, 5).map((row, index) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;tr key={index} className="border-t"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;td className="px-3 py-2"&gt;{row.title}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;td className="px-3 py-2"&gt;{row.company}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;td className="px-3 py-2"&gt;{row.reason}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;td className="px-3 py-2"&gt;{row.priority}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;td className="px-3 py-2"&gt;${row.value.toLocaleString()}&lt;/td&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/tr&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/tbody&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/table&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{importPreview.length &gt; 5 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="p-2 text-center text-gray-600 text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>... and {importPreview.length - 5} more disputes</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="flex gap-3 mt-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>onClick={() =&gt; setImportStep(2)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>className="px-4 py-2 bg-gray-300 text-gray-700 rounded-lg hover:bg-gray-400"</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>Back</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>onClick={executeImport}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>className="px-4 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700"</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>disabled={importErrors.length &gt; 0 || importPreview.length === 0}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>Import {importPreview.length} Disputes</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>const DisputeDetailModal = () =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">            </span>if (!selectedDispute) return null;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">            </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center p-4 z-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="bg-white rounded-lg p-6 w-full max-w-4xl max-h-[90vh] overflow-y-auto"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="flex justify-between items-start mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h3 className="text-lg font-semibold"&gt;{selectedDispute.title}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>onClick={() =&gt; setSelectedDispute(null)}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>className="text-gray-500 hover:text-gray-700"</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>×</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Case ID&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.id}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Customer Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.subName || selectedDispute.company}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Reason&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.reason}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Status&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span className={`inline-flex px-2 py-1 text-xs font-semibold rounded-full ${getStatusColor(selectedDispute.status)}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{selectedDispute.status}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Priority&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;span className={`text-sm font-medium ${getPriorityColor(selectedDispute.priority)}`}&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{selectedDispute.priority}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Value&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;p className="text-sm text-gray-900"&gt;${selectedDispute.value?.toLocaleString()}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{selectedDispute.disputeStatus &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="border-t pt-4 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 className="text-md font-semibold mb-3"&gt;Dispute Details&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="grid grid-cols-2 md:grid-cols-3 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.disputeStatus &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Dispute Status&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.disputeStatus}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.disputeDate &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Dispute Date&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.disputeDate}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.purpose &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Purpose&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.purpose}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.erpStatus &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;ERP Status&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.erpStatus}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.whoCharged &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Who Charged&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.whoCharged}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="border-t pt-4 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 className="text-md font-semibold mb-3"&gt;Customer Information&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="grid grid-cols-2 md:grid-cols-3 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.subName &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Customer Name&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.subName}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.email &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Email&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.email}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.phoneNumber &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Phone&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.phoneNumber}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.subId &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Customer ID&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.subId}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="border-t pt-4 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 className="text-md font-semibold mb-3"&gt;Communication &amp; Follow-up&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="grid grid-cols-2 md:grid-cols-3 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.firstTxtEmail !== undefined &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;1st Txt &amp; Email&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.firstTxtEmail ? 'Yes' : 'No'}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.secondLetter !== undefined &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;2nd Letter&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.secondLetter ? 'Yes' : 'No'}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.submittedUntilWhen &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Submitted Until&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.submittedUntilWhen}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="border-t pt-4 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h4 className="text-md font-semibold mb-3"&gt;Resolution Tracking&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="grid grid-cols-2 md:grid-cols-3 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.wonLost &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Won/Lost&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.wonLost}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{selectedDispute.anotherPersonsCard !== undefined &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Another Person's Card&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.anotherPersonsCard ? 'Yes' : 'No'}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>)}</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="border-t pt-4 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h4 className="text-md font-semibold mb-3"&gt;Timeline&lt;/h4&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="grid grid-cols-2 md:grid-cols-3 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Created&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.dateCreated}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;label className="block text-sm font-medium text-gray-500"&gt;Due Date&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.dueDate}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="mb-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label className="block text-sm font-medium text-gray-500 mb-2"&gt;Parties Involved&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="flex flex-wrap gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>{selectedDispute.parties?.map((party, index) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span key={index} className="bg-blue-100 text-blue-800 px-2 py-1 rounded-full text-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{party}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;label className="block text-sm font-medium text-gray-500 mb-2"&gt;Description&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.description}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>{selectedDispute.managementReview &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;label className="block text-sm font-medium text-gray-500 mb-2"&gt;Management Review / Notes&lt;/label&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="bg-gray-50 p-3 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;p className="text-sm text-gray-900"&gt;{selectedDispute.managementReview}&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>)}</p>
+<p class="p2"><span class="Apple-converted-space">                  </span></p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="flex gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>Edit Dispute</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button className="bg-green-600 text-white px-4 py-2 rounded-lg hover:bg-green-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>Add Note</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button className="bg-purple-600 text-white px-4 py-2 rounded-lg hover:bg-purple-700"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>Update Status</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;button className="bg-gray-300 text-gray-700 px-4 py-2 rounded-lg hover:bg-gray-400"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>Generate Report</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">            </span>);</p>
+<p class="p1"><span class="Apple-converted-space">          </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">          </span>return (</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;div className="min-h-screen bg-gray-50"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Header */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white shadow-sm border-b"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="flex justify-between items-center py-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h1 className="text-2xl font-bold text-gray-900"&gt;Dispute Resolution System&lt;/h1&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="flex items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="bg-green-50 border border-green-200 rounded-lg px-3 py-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span className="text-sm text-green-800"&gt;✓ Real dispute data loaded&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;button className="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;Download className="w-4 h-4" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>Export</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="flex items-center gap-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;Users className="w-5 h-5 text-gray-400" /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;span className="text-sm text-gray-600"&gt;Dispute Specialist&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Navigation */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="bg-white shadow-sm"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;nav className="flex space-x-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>{['dashboard', 'disputes', 'reasons', 'timeline', 'analytics', 'reports'].map((tab) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;button</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>key={tab}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>onClick={() =&gt; setActiveTab(tab)}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>className={`py-4 px-1 border-b-2 font-medium text-sm capitalize ${</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>activeTab === tab</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>? 'border-blue-500 text-blue-600'</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>: 'border-transparent text-gray-500 hover:text-gray-700'</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>}`}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{tab === 'reasons' ? 'Dispute Reasons' :<span class="Apple-converted-space"> </span></p>
+<p class="p1"><span class="Apple-converted-space">                         </span>tab === 'timeline' ? 'Disputed On' : tab}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/button&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/nav&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Main Content */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'dashboard' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;DashboardStats /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;DisputesList /&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>)}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'disputes' &amp;&amp; &lt;DisputesList /&gt;}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'reasons' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="bg-white rounded-lg shadow-sm border p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;h2 className="text-lg font-semibold mb-4"&gt;Disputes by Reason&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                      </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-blue-50 p-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-blue-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{new Set(disputes.map(d =&gt; d.reason)).size}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-blue-700"&gt;Unique Reasons&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-red-50 p-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-red-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{disputes.filter(d =&gt; d.reason === 'Fraudulent').length}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-red-700"&gt;Fraudulent Claims&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-green-50 p-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-green-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{disputes.filter(d =&gt; d.reason === 'Subscription Cancelled').length}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-green-700"&gt;Subscription Issues&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{Object.entries(</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>disputes.reduce((acc, dispute) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const reason = dispute.reason || 'Unknown';</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>if (!acc[reason]) {</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>acc[reason] = [];</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>acc[reason].push(dispute);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return acc;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>}, {})</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>.sort((a, b) =&gt; b[1].length - a[1].length)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>.map(([reason, reasonDisputes]) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div key={reason} className="border rounded-lg p-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="flex justify-between items-center mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;h3 className="font-medium text-lg"&gt;{reason}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;div className="flex items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span className="text-sm text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>{reasonDisputes.length} disputes</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span className="text-sm font-medium"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>${reasonDisputes.reduce((sum, d) =&gt; sum + d.value, 0).toLocaleString()}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                            </span></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>{reasonDisputes.slice(0, 6).map(dispute =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div key={dispute.id} className="bg-gray-50 p-3 rounded"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;div className="font-medium text-sm"&gt;{dispute.subName || dispute.title}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;div className="text-xs text-gray-600 mt-1"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>${dispute.value.toLocaleString()} • {dispute.disputeStatus || dispute.status}</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;div className="text-xs text-gray-500 mt-1"&gt;{dispute.dateCreated}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>{reasonDisputes.length &gt; 6 &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="bg-gray-100 p-3 rounded flex items-center justify-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;span className="text-sm text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>+{reasonDisputes.length - 6} more</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'timeline' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="bg-white rounded-lg shadow-sm border p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;h2 className="text-lg font-semibold mb-4"&gt;Disputes Timeline&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                      </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-purple-50 p-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-purple-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{disputes.filter(d =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const disputeDate = new Date(d.disputeDate || d.dateCreated);</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const today = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const diffTime = today - disputeDate;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>return diffDays &lt;= 7;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}).length}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-purple-700"&gt;This Week&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-blue-50 p-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-blue-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{disputes.filter(d =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const disputeDate = new Date(d.disputeDate || d.dateCreated);</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const today = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const diffTime = today - disputeDate;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>return diffDays &lt;= 30;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}).length}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-blue-700"&gt;This Month&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-yellow-50 p-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-yellow-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{disputes.filter(d =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const disputeDate = new Date(d.disputeDate || d.dateCreated);</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const today = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const diffTime = today - disputeDate;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>return diffDays &gt; 30 &amp;&amp; diffDays &lt;= 90;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}).length}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-yellow-700"&gt;Last 3 Months&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-gray-50 p-4 rounded-lg"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{disputes.filter(d =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const disputeDate = new Date(d.disputeDate || d.dateCreated);</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const today = new Date();</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const diffTime = today - disputeDate;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>return diffDays &gt; 90;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}).length}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-gray-700"&gt;Older&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="space-y-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>{Object.entries(</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>disputes.reduce((acc, dispute) =&gt; {</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>const date = dispute.disputeDate || dispute.dateCreated;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>if (!acc[date]) {</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>acc[date] = [];</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>acc[date].push(dispute);</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>return acc;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>}, {})</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>.sort((a, b) =&gt; new Date(b[0]) - new Date(a[0]))</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>.slice(0, 10)</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>.map(([date, dateDisputes]) =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div key={date} className="border rounded-lg p-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="flex justify-between items-center mb-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;h3 className="font-medium text-lg"&gt;{date}&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;div className="flex items-center gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span className="text-sm text-gray-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>{dateDisputes.length} disputes</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;span className="text-sm font-medium"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>${dateDisputes.reduce((sum, d) =&gt; sum + d.value, 0).toLocaleString()}</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                            </span></p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="space-y-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>{dateDisputes.map(dispute =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div key={dispute.id} className="flex justify-between items-center py-2 px-3 bg-gray-50 rounded"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;div className="flex items-center gap-3"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;span className={`w-3 h-3 rounded-full ${</p>
+<p class="p1"><span class="Apple-converted-space">                                      </span>dispute.disputeStatus === 'WON' ? 'bg-green-500' :</p>
+<p class="p1"><span class="Apple-converted-space">                                      </span>dispute.disputeStatus === 'LOST' ? 'bg-red-500' :</p>
+<p class="p1"><span class="Apple-converted-space">                                      </span>dispute.disputeStatus === 'NEW' ? 'bg-purple-500' :</p>
+<p class="p1"><span class="Apple-converted-space">                                      </span>dispute.disputeStatus === 'VISA RDR' ? 'bg-orange-500' :</p>
+<p class="p1"><span class="Apple-converted-space">                                      </span>'bg-gray-500'</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>}`}&gt;&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                      </span>&lt;div className="font-medium text-sm"&gt;{dispute.subName || dispute.title}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                      </span>&lt;div className="text-xs text-gray-600"&gt;{dispute.reason} • {dispute.purpose}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;div className="text-right"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="text-sm font-medium"&gt;${dispute.value.toLocaleString()}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                    </span>&lt;div className="text-xs text-gray-500"&gt;{dispute.disputeStatus || dispute.status}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>)}</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'analytics' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="space-y-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;div className="bg-white rounded-lg shadow-sm border p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;h2 className="text-lg font-semibold mb-4"&gt;Analytics Dashboard&lt;/h2&gt;</p>
+<p class="p2"><span class="Apple-converted-space">                      </span></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="bg-gray-50 p-4 rounded-lg mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 className="font-semibold mb-3"&gt;Overall Summary&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="grid grid-cols-2 md:grid-cols-4 gap-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="text-2xl font-bold text-gray-900"&gt;{disputes.length}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="text-sm text-gray-600"&gt;Total Disputes&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="text-2xl font-bold text-green-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>${disputes.reduce((sum, d) =&gt; sum + d.value, 0).toLocaleString()}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="text-sm text-gray-600"&gt;Total Amount&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="text-2xl font-bold text-blue-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>${Math.round(disputes.reduce((sum, d) =&gt; sum + d.value, 0) / disputes.length).toLocaleString()}</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="text-sm text-gray-600"&gt;Average Value&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-center"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="text-2xl font-bold text-purple-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>{Math.round((disputes.filter(d =&gt; d.disputeStatus === 'WON' || d.disputeStatus === 'ACCEPTED').length / disputes.length) * 100)}%</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>&lt;div className="text-sm text-gray-600"&gt;Overall Win Rate&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-green-50 p-4 rounded-lg border border-green-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-green-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{disputes.filter(d =&gt; d.disputeStatus === 'WON').length}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-green-700 mb-1"&gt;WON Cases&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-xs text-green-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>${disputes.filter(d =&gt; d.disputeStatus === 'WON').reduce((sum, d) =&gt; sum + d.value, 0).toLocaleString()}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-red-50 p-4 rounded-lg border border-red-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-red-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{disputes.filter(d =&gt; d.disputeStatus === 'LOST').length}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-red-700 mb-1"&gt;LOST Cases&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-xs text-red-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>${disputes.filter(d =&gt; d.disputeStatus === 'LOST').reduce((sum, d) =&gt; sum + d.value, 0).toLocaleString()}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-blue-50 p-4 rounded-lg border border-blue-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-blue-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{disputes.filter(d =&gt; d.disputeStatus === 'ACCEPTED').length}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-blue-700 mb-1"&gt;ACCEPTED Cases&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-xs text-blue-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>${disputes.filter(d =&gt; d.disputeStatus === 'ACCEPTED').reduce((sum, d) =&gt; sum + d.value, 0).toLocaleString()}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="bg-orange-50 p-4 rounded-lg border border-orange-200"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-2xl font-bold text-orange-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>{disputes.filter(d =&gt; d.disputeStatus === 'VISA RDR').length}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-sm text-orange-700 mb-1"&gt;VISA RDR Cases&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;div className="text-xs text-orange-600"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>${disputes.filter(d =&gt; d.disputeStatus === 'VISA RDR').reduce((sum, d) =&gt; sum + d.value, 0).toLocaleString()}</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;div className="border rounded-lg p-4"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;h3 className="font-medium mb-3"&gt;Recent High-Value Disputes&lt;/h3&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;div className="space-y-2"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                          </span>{disputes</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>.filter(d =&gt; d.value &gt; 200)</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>.slice(0, 5)</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>.map(dispute =&gt; (</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;div key={dispute.id} className="flex justify-between items-center py-2 border-b last:border-b-0"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;span className="text-sm font-medium"&gt;{dispute.subName || dispute.title}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;span className="text-xs text-gray-500 ml-2"&gt;{dispute.reason}&lt;/span&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;div className="text-right"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;div className="text-sm font-medium"&gt;${dispute.value.toLocaleString()}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                  </span>&lt;div className="text-xs text-gray-500"&gt;{dispute.disputeStatus}&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                                </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                              </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                            </span>))}</p>
+<p class="p1"><span class="Apple-converted-space">                        </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                      </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>)}</p>
+<p class="p2"><span class="Apple-converted-space">                </span></p>
+<p class="p1"><span class="Apple-converted-space">                </span>{activeTab === 'reports' &amp;&amp; (</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;div className="bg-white rounded-lg shadow-sm border p-6"&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;h2 className="text-lg font-semibold mb-4"&gt;Reports&lt;/h2&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                    </span>&lt;p className="text-gray-600"&gt;Generate comprehensive reports on dispute resolution metrics, trends, and performance.&lt;/p&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                  </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">                </span>)}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>&lt;/div&gt;</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">              </span>{/* Modals */}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{showNewDisputeForm &amp;&amp; &lt;NewDisputeForm /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{showImportModal &amp;&amp; &lt;ImportModal /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">              </span>{selectedDispute &amp;&amp; &lt;DisputeDetailModal /&gt;}</p>
+<p class="p1"><span class="Apple-converted-space">            </span>&lt;/div&gt;</p>
+<p class="p1"><span class="Apple-converted-space">          </span>);</p>
+<p class="p1"><span class="Apple-converted-space">        </span>};</p>
+<p class="p2"><br></p>
+<p class="p1"><span class="Apple-converted-space">        </span>ReactDOM.render(&lt;DisputeResolutionApp /&gt;, document.getElementById('root'));</p>
+<p class="p1"><span class="Apple-converted-space">    </span>&lt;/script&gt;</p>
+<p class="p1">&lt;/body&gt;</p>
+<p class="p1">&lt;/html&gt;</p>
+</body>
+</html>
